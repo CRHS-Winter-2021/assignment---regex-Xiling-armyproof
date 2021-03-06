@@ -9,17 +9,17 @@
 #A# Change the regex from .* to what is required to capture an email address
 #B# Add a condition so that no blanks are printed.
 #C# Count the number of email addresses found and print a final output line.
-
-def reEmail(fname):
-  
-  fhand = open(fname,'r')
+import re
+def reEmail(fname):      
+  count = 0
+  fhand = open(fname, 'r')
   for line in fhand:
-    extr = re.findall('.*',line)
-    if len(extr): 
+    extr = re.findall('\S+@\S+', line)
+    if len(extr):
       print(extr)
-        
-
-  print()
+      count+=1
+  print('There were {} email addresses in {}'.format(count,fname))
+  
     
 
 '''### Task 1 Results for 
@@ -35,11 +35,11 @@ There were 89 email addresses in rural-staff.txt
 #You should use a ( and ) regex like " (extract this) " to extract a portion of the match
 
 def reAward(fname):
-  fhand = open(fname, 'r')
+  fhand = open(fname,'r')
   for line in fhand:
-    extr = re.findall('.*', line)
-    if len(extr):
-      print(extr)
+      extr = re.findall('-(.*)',line)
+      if len(extr): 
+        print(extr)
 
 '''### Task 2 Results for
 >reAward('rural-athletics.txt')
@@ -56,7 +56,11 @@ def rePhone(fname):
   #extract the specific phone numbers regex
   #if the length of the extraction is not empty
   #print the phone number
-  pass
+  fhand = open(fname,'r')
+  for line in fhand:
+      extr = re.findall('\s(.*-.*-.*)',line)
+      if len(extr): 
+        print(extr)
 
 '''### Task 3 results
 >rePhone('rural-staff.txt')
